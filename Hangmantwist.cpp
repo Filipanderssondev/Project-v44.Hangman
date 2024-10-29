@@ -11,8 +11,13 @@ int FunctionUsedconsonant();
     //Compare to stored characters
 int FunctionUsedwords();
     //Compare to stored words
-int FunctionWordsize();
+bool FunctionWordsize(const std::string& word);
     //Compare the input word to the size of hidden word (==5)
+
+    bool fiveCharacters (const std::string& word) {
+        return word.size() == 5;
+    }
+    
 int FunctionSwitchfromlvl1tolvl2();
     //Output the switch from Level 1 to Level 2
 int FunctionQuitgame();

@@ -4,43 +4,26 @@
 using namespace std;
 
 void FunctionRules();
-
+    // Add an output for the rules (Level 1 and Level 2)
 int FunctionEnterconsonant();
 
-string FunctionEnterword();
 
 int FunctionUsedconsonant();
-
+    //Compare to stored characters
 int FunctionUsedwords();
-
+    //Compare to stored words
 int FunctionWordsize();
-
+    //Compare the input word to the size of hidden word (==5)
 int FunctionSwitchfromlvl1tolvl2();
-
-int FUnctionQuitgame();
-
+    //Output the switch from Level 1 to Level 2
+int FunctionQuitgame();
+    //Command to quit the game (Boolean to true)
 int FunctionCorrectanswer();
-
+    //Compare the input word to the hidden word
 int main()
 {
 
-    //Level 2 asks user to guess a word
-    string FunctionEnterword();
 
     return 0; 
 }
 
-string FunctionEnterword()
-{
-    vector<string>gWords;
-    int i; 
-    for ( i=0; i<gWords.size(); i++)
-    {
-        cout<<"Please enter a word with 5 letters in lowecase: \n"; 
-        getline(cin, gWords[i]); 
-    }
-    
-
-    vector<string>gWords;
-    return gWords[i]; 
-}

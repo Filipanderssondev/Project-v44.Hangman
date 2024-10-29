@@ -20,6 +20,7 @@ int FUnctionQuitgame();
 int FunctionCorrectanswer();
 
 int main()
-
 {
+
+    
     return 0; }

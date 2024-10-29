@@ -7,7 +7,7 @@ void FunctionRules();
 
 int FunctionEnterconsonant();
 
-string FunctionEnterword();
+vector<string> FunctionEnterword();
 
 int FunctionUsedconsonant();
 
@@ -25,22 +25,25 @@ int main()
 {
 
     //Level 2 asks user to guess a word
-    string FunctionEnterword();
+    vector<string> userGueesedWords = FunctionEnterword();
+    cout<<"You already guessed these words: \n"; 
+    for (string word : userGueesedWords)
+    {
+        cout << word << " ";
+    }
 
     return 0; 
 }
 
-string FunctionEnterword()
+vector<string> FunctionEnterword()
 {
-    vector<string>gWords;
-    int i; 
-    for ( i=0; i<gWords.size(); i++)
-    {
-        cout<<"Please enter a word with 5 letters in lowecase: \n"; 
-        getline(cin, gWords[i]); 
-    }
-    
+    vector<string> guessedWords;
+    string getWord; 
 
-    vector<string>gWords;
-    return gWords[i]; 
+    cout<<"Please enter a word with 5 letters in lowecase: \n"; 
+    getline(cin, getWord); 
+    
+    guessedWords.push_back(getWord); 
+
+    return guessedWords; 
 }

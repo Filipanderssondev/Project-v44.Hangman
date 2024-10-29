@@ -7,19 +7,20 @@
 
 using namespace std;
 
+
 string getrandomword(const string& filename)
 {   
     ifstream file(filename);
     vector<string> words;
-    string word;
+    string wordsfromfil;
 
     if (file.is_open())   
     {
-        while (file >> word)
+        while (file >> wordsfromfil)
         {
-            if(word.length() == 5)
+            if(wordsfromfil.length() == 5)
             {
-            words.push_back(word);
+            words.push_back(wordsfromfil);
             }
         }
         file.close();
@@ -30,58 +31,85 @@ string getrandomword(const string& filename)
         }
     
     if (!words.empty()) {
-        int randomIndex = rand() % words.size();
+        size_t randomIndex = static_cast<size_t>(rand()) % words.size();
         return words[randomIndex];
     } else {
-        std::cerr << "No 5-letter words found in the file." << std::endl;
+        cerr << "No 5-letter words found in the file." << endl;
         return "";
     }
 }   
 
-
-
-
-vector<char> Getuserconsonant()
+char Getuserconsonant()
 {  
-    vector<char> consonant;
-    char getconsonant;
-        
-    cout << "Please enter a letter(enter '0' to stop)" << endl;
-    while (true){ //Loop kör tills player ange 0
     
+    char getconsonant;
+    while (true)
+    {
+        cout << "Please enter a letter to search(enter '0' to stop)" << endl;
         cin >> getconsonant;
-        if (getconsonant == '0')
+        if (getconsonant == '0') return '0';
+        if (isalpha(getconsonant) && !isupper(getconsonant)) //Om det är en storbokstav måste player ange en ny
         {
-            break;      //stop om det är 0
-        }
-        
-        if (isalpha(getconsonant) && isupper(getconsonant)) //Om det är en storbokstav måste player ange en ny
+            return getconsonant;
+        }else if (isupper(getconsonant))
         {
             cout << "Uppercase letters are not allowed. Please enter a lowercase letter." << endl;
-            continue; 
+        }else {
+            cout << "Invalid input. Please enter a lowercase consonant." << endl;
         }
-        consonant.push_back(getconsonant); //alla bokstaver sparas i vector-consonant
     }
-    return consonant;  
-}
+}     
         
 int main()
 {   
     srand(static_cast<unsigned int>(time(nullptr)));
     string filename = "words.txt";
     string randomword = getrandomword(filename);
+    
     if (!randomword.empty()) 
     {
-        std::cout << "Random 5-letter word: " << randomword << std::endl;
+        cout << "Random 5-letter word: " << randomword << endl;
+    } else {
+        return 1;
     }
 
-   
-    vector<char>userconsonant = Getuserconsonant();
-    cout << "All letters entered: ";
-    for (char consonant : userconsonant) //skriver ut alla bokstaver som har sparat i vector-consonant
+    vector<size_t> positions;
+    vector<char> userConsonants; 
+    while (true)
     {
-        cout << consonant << " ";
-    }
-        cout << endl;
-    
+        char userconsonant = Getuserconsonant();
+        if (userconsonant == '0') 
+        {
+            break; 
+        }
+        userConsonants.push_back(userconsonant);
+        size_t pos = randomword.find(userconsonant);
+        positions.clear();
+        while (pos != string::npos)
+        {
+            positions.push_back(pos); //kolla var liger bokstaven och spara den
+            pos = randomword.find(userconsonant, pos + 1);
+        }
+            
+        if  (!positions.empty())
+        {        
+            
+            cout << "The consonant " << userconsonant << "is in the word at positions: ";   
+            for (size_t position : positions)
+            {
+                cout << position + 1 << " ";
+            }
+            cout << endl;
+        }else{
+            cout << "The consonant " << userconsonant << "is not in the word." << endl;
+            }
+    }    
+        
+        cout << "All letters entered: ";
+        for (char consonant : userConsonants) //skriver ut alla bokstaver som har sparat i vector-consonant
+        {
+            cout << consonant << " ";
+        }
+            cout << endl;
+        
 }

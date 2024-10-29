@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 void FunctionRules();
@@ -7,15 +8,22 @@ int FunctionEnterconsonant();
     //Input a character and save it to a variable
 int FunctionEnterword();
     //Input a word(string),  and save it
-int FunctionUsedconsonant();
+bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
+    for (char c : consonants) {
+        if (c == userconsonant) {
+            return true;
+        }
+    }
+    return false;
+}
+
     //Compare to stored characters
+
 int FunctionUsedwords();
     //Compare to stored words
-bool FunctionWordsize(const std::string& word);
+int FunctionWordsize(const std::string& word) {
     //Compare the input word to the size of hidden word (==5)
-
-    bool fiveCharacters (const std::string& word) {
-        return word.size() == 5;
+    return word.size() == 5;
     }
     
 int FunctionSwitchfromlvl1tolvl2();
@@ -24,7 +32,13 @@ int FunctionQuitgame();
     //Command to quit the game (Boolean to true)
 int FunctionCorrectanswer();
     //Compare the input word to the hidden word
-int main()
+int main(){
 
-{
+    if (FunctionUsedconsonant (consonants, userconsonant)) {
+        cout << "This consonant has already been used." << endl;
+    }
+        else {
+            consonants.push_back(userconsonant);
+        }
+
     return 0; }

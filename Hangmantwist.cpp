@@ -1,25 +1,38 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-void FunctionRules();
-    // Add an output for the rules (Level 1 and Level 2)
-int FunctionEnterconsonant();
-    //Input a character and save it to a variable
-int FunctionEnterword();
-    //Input a word(string),  and save it
-int FunctionUsedconsonant();
-    //Compare to stored characters
-int FunctionUsedwords();
-    //Compare to stored words
-int FunctionWordsize();
-    //Compare the input word to the size of hidden word (==5)
-int FunctionSwitchfromlvl1tolvl2();
-    //Output the switch from Level 1 to Level 2
-int FunctionQuitgame();
-    //Command to quit the game (Boolean to true)
-int FunctionCorrectanswer();
-    //Compare the input word to the hidden word
-int main()
+//void FunctionRules();
 
-{
-    return 0; }
+char FunctionEnterconsonant()
+{  
+    char consonant;
+    cout << "Please enter a consonant " << endl;
+    cin >> consonant;
+    return consonant;
+};
+
+
+//int FunctionEnterword();
+
+//int FunctionUsedconsonant();
+
+//int FunctionUsedwords();
+
+//int FunctionWordsize();
+
+//int FunctionSwitchfromlvl1tolvl2();
+
+//int FUnctionQuitgame();
+
+//int FunctionCorrectanswer();
+
+int main()
+{  
+    vector<char> consonant;
+    char userconsonant = FunctionEnterconsonant();
+    consonant.push_back(userconsonant);
+    cout << "The consonant is " << userconsonant << endl;
+    
+    return 0;
+}

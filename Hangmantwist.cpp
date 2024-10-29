@@ -36,5 +36,5 @@ int main()
         cout << consonant << " ";
     }
         cout << endl;
-     return 0;
+    
 }

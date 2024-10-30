@@ -6,7 +6,7 @@ using namespace std;
 void printMainMenu()
 {   
     //Opens the file in reading mode
-    ifstream f("README.md");
+    ifstream f("README.txt");
 
     //Checks if the file is opened correctly
     if (!f.is_open())
@@ -51,6 +51,5 @@ int FunctionCorrectanswer();
 int main()
 {
     printMainMenu();
-
     return 0; 
 }

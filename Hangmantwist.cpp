@@ -4,10 +4,46 @@
 #include <cstdlib>
 #include <cctype>
 #include <ctime>
-
 using namespace std;
 
+void printMainMenu()
+{   
+    //Opens the file in reading mode
+    ifstream f("README.txt");
 
+    //Checks if the file is opened correctly
+    if (!f.is_open())
+    {
+        cerr << "Error message!: Couldnt open the file!";
+        return;
+    }
+
+    //String variable to to store the read data
+    string s;
+
+    // Read each line of the file and print it to the
+    // Standard output stream till the whole file is 
+    // Completely read
+    while (getline(f, s))
+    {
+        cout << s << endl;
+    }
+
+    //Close the file
+    f.close();
+    return;
+    //I got help from Geeks4Geeks to solve this 
+}
+
+bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
+    //Checks the consonants with stored ones to find duplicates
+    for (char c : consonants) {
+        if (c == userconsonant) {
+            return true;
+        }
+    }
+    return false;
+}
 string getrandomword(const string& filename)
 {   
     ifstream file(filename);
@@ -48,7 +84,7 @@ char Getuserconsonant()
         cout << "Please enter a letter to search(enter '0' to stop)" << endl;
         cin >> getconsonant;
         if (getconsonant == '0') return '0';
-        if (isalpha(getconsonant) && !isupper(getconsonant)) //Om det är en storbokstav måste player ange en ny
+        if (isalpha(getconsonant) && !isupper(getconsonant) && getconsonant != 'a' && getconsonant != 'e' && getconsonant != 'i' && getconsonant != 'o' && getconsonant != 'u') //Om det är en storbokstav måste player ange en ny
         {
             return getconsonant;
         }else if (isupper(getconsonant))
@@ -62,6 +98,7 @@ char Getuserconsonant()
         
 int main()
 {   
+    printMainMenu();
     srand(static_cast<unsigned int>(time(nullptr)));
     string filename = "words.txt";
     string randomword = getrandomword(filename);
@@ -69,7 +106,9 @@ int main()
     if (!randomword.empty()) 
     {
         cout << "Random 5-letter word: " << randomword << endl;
-    } else {
+    } 
+    else 
+    {
         return 1;
     }
 
@@ -82,7 +121,13 @@ int main()
         {
             break; 
         }
+        if (FunctionUsedconsonant(userConsonants, userconsonant)) 
+        {
+            cout << "The conosinant '" << userconsonant << "' has already been used. Try another one." << endl;
+            continue;
+        }    
         userConsonants.push_back(userconsonant);
+
         size_t pos = randomword.find(userconsonant);
         positions.clear();
         while (pos != string::npos)
@@ -94,15 +139,16 @@ int main()
         if  (!positions.empty())
         {        
             
-            cout << "The consonant " << userconsonant << "is in the word at positions: ";   
+            cout << "The consonant " << userconsonant << " is in the word at positions: ";   
             for (size_t position : positions)
             {
                 cout << position + 1 << " ";
             }
             cout << endl;
-        }else{
-            cout << "The consonant " << userconsonant << "is not in the word." << endl;
-            }
+        }
+        else{
+            cout << "The consonant " << userconsonant << " is not in the word." << endl;
+        }
     }    
         
         cout << "All letters entered: ";
@@ -112,4 +158,9 @@ int main()
         }
             cout << endl;
         
-}
+    }
+
+
+
+
+

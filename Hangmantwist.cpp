@@ -127,6 +127,7 @@ int main()
 >>>>>>> origin/main
     }
 
+<<<<<<< HEAD
     //String variable to to store the read data
     string s;
 
@@ -134,6 +135,12 @@ int main()
     // Standard output stream till the whole file is 
     // Completely read
     while (getline(f, s))
+=======
+    vector<size_t> positions;
+    vector<char> userConsonants; 
+    int numGuesses = 12;
+    while (true && numGuesses > 0)
+>>>>>>> origin
     {
 <<<<<<< HEAD
         cout << s << endl;
@@ -177,6 +184,8 @@ int main()
         }
         else{
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
+            --numGuesses;
+            cout << "Number of guesses left:" << numGuesses << endl;
         }
     }    
         

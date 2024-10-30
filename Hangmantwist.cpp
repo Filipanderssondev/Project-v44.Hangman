@@ -10,7 +10,7 @@ using namespace std;
 
 string getrandomword(const string& filename)
 {   
-    ifstream file(filename)；
+    ifstream file(filename);
     vector<string> words;
     string wordsfromfil;
 

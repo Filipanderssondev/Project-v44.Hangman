@@ -8,7 +8,7 @@ void FunctionRules();
 int FunctionEnterconsonant();
     //Input a character and save it to a variable
 vector<string> FunctionEnterword();
-/*bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
+bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
     //Checks the consonants with stored ones to find duplicates
     for (char c : consonants) {
         if (c == userconsonant) {
@@ -16,7 +16,7 @@ vector<string> FunctionEnterword();
         }
     }
     return false;
-} */
+}
 
     //Compare to stored characters
 int FunctionUsedwords();

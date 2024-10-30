@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <cctype>
 #include <ctime>
+#include <algorithm>
+#include <cstring>
 using namespace std;
 
 void printMainMenu()
@@ -97,6 +99,18 @@ char Getuserconsonant()// Function toi get a consonant from player
         }
     }
 }     
+// Function to check if all consonants in the word have been guessed
+bool allConsonantsGuessed(const string& word, const vector<char>& guessedConsonants) {
+    for (char c : word) 
+    {
+        // Check if character is a consonant and is not in guessed consonants
+        if (isalpha(c) && !strchr("aeiou", c) && find(guessedConsonants.begin(), guessedConsonants.end(), c) == guessedConsonants.end()) 
+        {
+            return false; // Return false if any consonant is not guessed
+        }
+    }
+    return true; // Return true if all consonants are guessed
+}
         
 int main()
 {   
@@ -105,20 +119,15 @@ int main()
     string filename = "words.txt"; //Word file
     string randomword = getrandomword(filename); //Get a random 5-letter word
     
-    if (!randomword.empty()) //If word is find print it
-    {
+    if (randomword.empty()) return 1;//If word is find print it
+    
         cout << "Random 5-letter word: " << randomword << endl;
-    } 
-    else 
-    {
-        return 1;
-    }
-
+        
     vector<size_t> positions; // Vector to store positions of the consonant in the word
     vector<char> userConsonants; // Vector to store all user-entered consonants
-    int numGuesses = 12; // Maximum number of guesses allowed
+    int totalGuesses = 12; // Maximum number of guesses allowed
     
-    while (true && numGuesses > 0)    // Loop until user decides to stop or runs out of guesses
+    while (totalGuesses > 0)    // Loop until user decides to stop or runs out of guesses
     {
         char userconsonant = Getuserconsonant(); // Get a consonant from the user
         if (userconsonant == '0') 
@@ -127,11 +136,12 @@ int main()
         }
         if (FunctionUsedconsonant(userConsonants, userconsonant)) // Check if the consonant has already been used
         {
-            cout << "The conosinant '" << userconsonant << "' has already been used. Try another one." << endl;
+            cout << "The conosonant '" << userconsonant << "' has already been used. Try another one." << endl;
             continue;
         }    
         userConsonants.push_back(userconsonant);  // Store the consonant in userConsonants
-
+        --totalGuesses;
+        
         size_t pos = randomword.find(userconsonant);    // Find and store all positions of the consonant in the random word
         positions.clear(); // Clear previous positions
         while (pos != string::npos)
@@ -149,22 +159,62 @@ int main()
                 cout << position + 1 << " ";
             }
             cout << endl;
-        }
-        else{   // If consonant not found, reduce number of guesses and display message
+        }else{   // If consonant not found, reduce number of guesses and display message
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
-            --numGuesses;
-            cout << "Number of guesses left:" << numGuesses << endl;
+            
+           
         }
-    }    
+        cout << "Number of guesses left:" << totalGuesses << endl;
         
-        cout << "All letters entered: ";
+        if (allConsonantsGuessed(randomword, userConsonants))   // If all consonants are guessed, allow the user to guess the word
+        {
+            cout << "All consonants have been guessed! Now, you can guess the word." << endl;
+            break;
+        }
+}         
+    
+    if (totalGuesses > 0 )// Word guessing phase
+    {
+        string guessedWord;
+        while (totalGuesses > 0) 
+        {
+            cout << "Please enter your guess for the word: ";
+            cin >> guessedWord;
+            --totalGuesses;
+            
+        if (guessedWord == randomword) {
+            cout << "Congratulations! You guessed the word correctly!" << endl;
+            return 0;
+        }else {
+            cout << "Sorry, that's not correct. Please try agian " << endl;
+            cout << "Guesses left: " << totalGuesses << endl;
+        }
+    }
+        if (totalGuesses == 0) 
+        {
+            cout << "You've run out of guesses! The correct word was: " << randomword << endl;
+        }
+    } else 
+    {
+        cout << "You've run out of guesses!" << endl;
+    }
+    cout << "All consonants entered: ";
+    for (char consonant : userConsonants)
+    {
+        cout << consonant << " ";
+    }
+        cout << endl;
+    }
+    
+
+        /*cout << "All letters entered: ";
         for (char consonant : userConsonants) //skriver ut alla bokstaver som har sparat i vector-consonant
         {
             cout << consonant << " ";
         }
-            cout << endl;
+            cout << endl;*/
         
-    }
+    
 
 
 

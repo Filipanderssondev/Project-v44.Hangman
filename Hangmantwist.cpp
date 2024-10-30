@@ -184,7 +184,7 @@ int main()
             
         if (guessedWord == randomword) {
             cout << "Congratulations! You guessed the word correctly!" << endl;
-            return 0;
+            break;
         }else {
             cout << "Sorry, that's not correct. Please try agian " << endl;
             cout << "Guesses left: " << totalGuesses << endl;
@@ -198,21 +198,17 @@ int main()
     {
         cout << "You've run out of guesses!" << endl;
     }
+    
     cout << "All consonants entered: ";
     for (char consonant : userConsonants)
     {
         cout << consonant << " ";
     }
-        cout << endl;
-    }
+    cout << endl;
+    return 0;
+}
     
 
-        /*cout << "All letters entered: ";
-        for (char consonant : userConsonants) //skriver ut alla bokstaver som har sparat i vector-consonant
-        {
-            cout << consonant << " ";
-        }
-            cout << endl;*/
         
     
 

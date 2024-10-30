@@ -114,7 +114,8 @@ int main()
 
     vector<size_t> positions;
     vector<char> userConsonants; 
-    while (true)
+    int numGuesses = 12;
+    while (true && numGuesses > 0)
     {
         char userconsonant = Getuserconsonant();
         if (userconsonant == '0') 
@@ -148,6 +149,8 @@ int main()
         }
         else{
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
+            --numGuesses;
+            cout << "Number of guesses left:" << numGuesses << endl;
         }
     }    
         

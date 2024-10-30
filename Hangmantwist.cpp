@@ -56,7 +56,7 @@ char Getuserconsonant()
         cout << "Please enter a letter to search(enter '0' to stop)" << endl;
         cin >> getconsonant;
         if (getconsonant == '0') return '0';
-        if (isalpha(getconsonant) && !isupper(getconsonant)) //Om det är en storbokstav måste player ange en ny
+        if (isalpha(getconsonant) && !isupper(getconsonant) && getconsonant != 'a' && getconsonant != 'e' && getconsonant != 'i' && getconsonant != 'o' && getconsonant != 'u') //Om det är en storbokstav måste player ange en ny
         {
             return getconsonant;
         }else if (isupper(getconsonant))
@@ -77,7 +77,9 @@ int main()
     if (!randomword.empty()) 
     {
         cout << "Random 5-letter word: " << randomword << endl;
-    } else {
+    } 
+    else 
+    {
         return 1;
     }
 
@@ -90,10 +92,13 @@ int main()
         {
             break; 
         }
-        if (functionUsedConsonant(userConsonants, userconsonant)) {
+        if (FunctionUsedconsonant(userConsonants, userconsonant)) 
+        {
             cout << "The conosinant '" << userconsonant << "' has already been used. Try another one." << endl;
             continue;
+        }    
         userConsonants.push_back(userconsonant);
+
         size_t pos = randomword.find(userconsonant);
         positions.clear();
         while (pos != string::npos)
@@ -105,15 +110,16 @@ int main()
         if  (!positions.empty())
         {        
             
-            cout << "The consonant " << userconsonant << "is in the word at positions: ";   
+            cout << "The consonant " << userconsonant << " is in the word at positions: ";   
             for (size_t position : positions)
             {
                 cout << position + 1 << " ";
             }
             cout << endl;
-        }else{
-            cout << "The consonant " << userconsonant << "is not in the word." << endl;
-            }
+        }
+        else{
+            cout << "The consonant " << userconsonant << " is not in the word." << endl;
+        }
     }    
         
         cout << "All letters entered: ";
@@ -123,7 +129,8 @@ int main()
         }
             cout << endl;
         
-}
+    }
+
 
 
 

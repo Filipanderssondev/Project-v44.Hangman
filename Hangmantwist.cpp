@@ -1,10 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include <string>
-#include <cstdlib>
-#include <cctype>
-#include <ctime>
 using namespace std;
 
 void printMainMenu()
@@ -38,5 +33,5 @@ void printMainMenu()
 
 int main()
 {   
-    void printMainMEnu();
+    printMainMenu();
 }

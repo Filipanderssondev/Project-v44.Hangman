@@ -26,11 +26,7 @@ int main()
         for (string word : userGueesedWords)
         {
             cout << word << " ";
-        }
-
-        
-
-        
+        }    
 
     }
 

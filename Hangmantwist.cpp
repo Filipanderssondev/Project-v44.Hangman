@@ -7,7 +7,15 @@
 
 using namespace std;
 
-
+bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
+    //Checks the consonants with stored ones to find duplicates
+    for (char c : consonants) {
+        if (c == userconsonant) {
+            return true;
+        }
+    }
+    return false;
+}
 string getrandomword(const string& filename)
 {   
     ifstream file(filename);
@@ -82,6 +90,9 @@ int main()
         {
             break; 
         }
+        if (functionUsedConsonant(userConsonants, userconsonant)) {
+            cout << "The conosinant '" << userconsonant << "' has already been used. Try another one." << endl;
+            continue;
         userConsonants.push_back(userconsonant);
         size_t pos = randomword.find(userconsonant);
         positions.clear();

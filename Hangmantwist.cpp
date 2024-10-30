@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -31,24 +31,52 @@ int main(){
     }
     return 0; 
     }
-    vector<string> FunctionEnterword()
-{
-    vector<string> guessedWords;
-    string getWord; 
-    int max_Char = 5;
-    int checker = 1;
 
-    do
+    vector<size_t> positions;
+    vector<char> userConsonants; 
+    while (true)
     {
-        cout<<"Please enter a word with 5 letters in lowecase:"; 
-        getline(cin, getWord); 
-        if(getWord.length() > max_Char || getWord.length() < max_Char) {
-            std::cout << "The word '" << getWord << "' isn't 5 characters long" << std::endl;
-        checker = 1;
-    }   else {
-        checker = 0;
-        guessedWords.push_back(getWord); 
+        char userconsonant = Getuserconsonant();
+        if (userconsonant == '0') 
+        {
+            break; 
         }
-      }while (checker == 1);
-    return guessedWords; 
+        if (functionUsedConsonant(userConsonants, userconsonant)) {
+            cout << "The conosinant '" << userconsonant << "' has already been used. Try another one." << endl;
+            continue;
+        }
+        userConsonants.push_back(userconsonant);
+        size_t pos = randomword.find(userconsonant);
+        positions.clear();
+        while (pos != string::npos)
+        {
+            positions.push_back(pos); //kolla var liger bokstaven och spara den
+            pos = randomword.find(userconsonant, pos + 1);
+        }
+            
+        if  (!positions.empty())
+        {        
+            
+            cout << "The consonant " << userconsonant << "is in the word at positions: ";   
+            for (size_t position : positions)
+            {
+                cout << position + 1 << " ";
+            }
+            cout << endl;
+        }else{
+            cout << "The consonant " << userconsonant << "is not in the word." << endl;
+            }
+    }    
+        
+        cout << "All letters entered: ";
+        for (char consonant : userConsonants) //skriver ut alla bokstaver som har sparat i vector-consonant
+        {
+            cout << consonant << " ";
+        }
+            cout << endl;
+        
 }
+
+
+
+

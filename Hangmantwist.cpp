@@ -18,7 +18,7 @@ bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
 }
 string getrandomword(const string& filename)
 {   
-    ifstream file(filename)；
+    ifstream file(filename);
     vector<string> words;
     string wordsfromfil;
 

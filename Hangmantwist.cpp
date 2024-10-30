@@ -185,21 +185,19 @@ int main()
         if (guessedWord == randomword) {
             cout << "Congratulations! You guessed the word correctly!" << endl;
             break;
-        }else {
+        }else 
+        {
             cout << "Sorry, that's not correct. Please try agian " << endl;
             cout << "Guesses left: " << totalGuesses << endl;
         }
-    }
+        }
         if (totalGuesses == 0) 
         {
             cout << "You've run out of guesses! The correct word was: " << randomword << endl;
         }
-    } else 
-    {
-        cout << "You've run out of guesses!" << endl;
-    }
+    } 
     
-    cout << "All consonants entered: ";
+    cout << "All consonants entered: ";  // Display all guessed consonants
     for (char consonant : userConsonants)
     {
         cout << consonant << " ";

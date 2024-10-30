@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -6,39 +7,48 @@ void FunctionRules();
     // Add an output for the rules (Level 1 and Level 2)
 int FunctionEnterconsonant();
     //Input a character and save it to a variable
-int FunctionEnterword();
-    //Input a word(string),  and save it
-bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
+vector<string> FunctionEnterword();
+/*bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
+    //Checks the consonants with stored ones to find duplicates
     for (char c : consonants) {
         if (c == userconsonant) {
             return true;
         }
     }
     return false;
-}
+} */
 
     //Compare to stored characters
-
 int FunctionUsedwords();
-    //Compare to stored words
-int FunctionWordsize(const std::string& word) {
-    //Compare the input word to the size of hidden word (==5)
-    return word.size() == 5;
-    }
-    
-int FunctionSwitchfromlvl1tolvl2();
-    //Output the switch from Level 1 to Level 2
-int FunctionQuitgame();
-    //Command to quit the game (Boolean to true)
-int FunctionCorrectanswer();
-    //Compare the input word to the hidden word
+    //Compare to stored word
 int main(){
-
-    if (FunctionUsedconsonant (consonants, userconsonant)) {
-        cout << "This consonant has already been used." << endl;
+     //Level 2 asks user to guess a word
+    vector<string> userGueesedWords = FunctionEnterword();
+    cout<<"You already guessed these words: \n"; 
+    for (string word : userGueesedWords) {
+        
+        cout << word << " ";
     }
-        else {
-            consonants.push_back(userconsonant);
-        }
+    return 0; 
+    }
+    vector<string> FunctionEnterword()
+{
+    vector<string> guessedWords;
+    string getWord; 
+    int max_Char = 5;
+    int checker = 1;
 
-    return 0; }
+    do
+    {
+        cout<<"Please enter a word with 5 letters in lowecase:"; 
+        getline(cin, getWord); 
+        if(getWord.length() > max_Char || getWord.length() < max_Char) {
+            std::cout << "The word '" << getWord << "' isn't 5 characters long" << std::endl;
+        checker = 1;
+    }   else {
+        checker = 0;
+        guessedWords.push_back(getWord); 
+        }
+      }while (checker == 1);
+    return guessedWords; 
+}

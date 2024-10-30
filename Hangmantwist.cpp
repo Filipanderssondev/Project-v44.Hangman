@@ -114,11 +114,13 @@ int main()
         return 1;
     }
 
+
     vector<size_t> positions; // Vector to store positions of the consonant in the word
     vector<char> userConsonants; // Vector to store all user-entered consonants
     int numGuesses = 12; // Maximum number of guesses allowed
     
     while (true && numGuesses > 0)    // Loop until user decides to stop or runs out of guesses
+
     {
         char userconsonant = Getuserconsonant(); // Get a consonant from the user
         if (userconsonant == '0') 
@@ -152,8 +154,8 @@ int main()
         }
         else{   // If consonant not found, reduce number of guesses and display message
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
-            --numGuesses;
-            cout << "Number of guesses left:" << numGuesses << endl;
+            --numGuesses; 
+            cout << "Number of guesses left:" << numGuesses << endl;    // write out the number of guesses left
         }
     }    
         

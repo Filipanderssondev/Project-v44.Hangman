@@ -3,25 +3,12 @@
 #include <vector>
 using namespace std;
 
-void FunctionRules();
-
-int FunctionEnterconsonant();
 
 vector<string> FunctionEnterword();
 
 void display_status(vector<string> incorrect, string answer); 
 
-int FunctionUsedconsonant();
 
-int FunctionUsedwords();
-
-int FunctionWordsize();
-
-int FunctionSwitchfromlvl1tolvl2();
-
-int FUnctionQuitgame();
-
-int FunctionCorrectanswer();
 
 int main()
 {

@@ -114,30 +114,19 @@ bool allConsonantsGuessed(const string& word, const vector<char>& guessedConsona
 
 void guesses_left (int left)
 {
-    if(left ==13)
+    if(left ==12)
     {
         std::cout << "\n";
 
     }
 
-    else if(left==12)
+    else if(left==11)
     {
     std::cout << "____\n";
     }
-    else if(left ==11)
-    {
-    std::cout << " "<< endl;
-    std::cout << " |      " << endl; 
-    std::cout << " |      " << endl;
-    std::cout << " |      " << endl;
-    std::cout << " |       " << endl;
-    std::cout << " |      " << endl;
-    std::cout << " |\n";
-    std::cout << "_|___\n";
-    }
     else if(left ==10)
     {
-    std::cout << " _______ "<< endl;
+    std::cout << " "<< endl;
     std::cout << " |      " << endl; 
     std::cout << " |      " << endl;
     std::cout << " |      " << endl;
@@ -149,7 +138,7 @@ void guesses_left (int left)
     else if(left ==9)
     {
     std::cout << " _______ "<< endl;
-    std::cout << " |      |" << endl; 
+    std::cout << " |      " << endl; 
     std::cout << " |      " << endl;
     std::cout << " |      " << endl;
     std::cout << " |       " << endl;
@@ -160,7 +149,7 @@ void guesses_left (int left)
     else if(left ==8)
     {
     std::cout << " _______ "<< endl;
-    std::cout << " |/      |" << endl; 
+    std::cout << " |      |" << endl; 
     std::cout << " |      " << endl;
     std::cout << " |      " << endl;
     std::cout << " |       " << endl;
@@ -172,7 +161,7 @@ void guesses_left (int left)
     {
     std::cout << " _______ "<< endl;
     std::cout << " |/      |" << endl; 
-    std::cout << " |      (_)" << endl;
+    std::cout << " |      " << endl;
     std::cout << " |      " << endl;
     std::cout << " |       " << endl;
     std::cout << " |      " << endl;
@@ -184,7 +173,7 @@ void guesses_left (int left)
     std::cout << " _______ "<< endl;
     std::cout << " |/      |" << endl; 
     std::cout << " |      (_)" << endl;
-    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
     std::cout << " |       " << endl;
     std::cout << " |      " << endl;
     std::cout << " |\n";
@@ -196,7 +185,7 @@ void guesses_left (int left)
     std::cout << " |/      |" << endl; 
     std::cout << " |      (_)" << endl;
     std::cout << " |       |" << endl;
-    std::cout << " |       |" << endl;
+    std::cout << " |       " << endl;
     std::cout << " |      " << endl;
     std::cout << " |\n";
     std::cout << "_|___\n";
@@ -206,7 +195,7 @@ void guesses_left (int left)
     std::cout << " _______ "<< endl;
     std::cout << " |/      |" << endl; 
     std::cout << " |      (_)" << endl;
-    std::cout << " |      \\|" << endl;
+    std::cout << " |       |" << endl;
     std::cout << " |       |" << endl;
     std::cout << " |      " << endl;
     std::cout << " |\n";
@@ -217,13 +206,24 @@ void guesses_left (int left)
     std::cout << " _______ "<< endl;
     std::cout << " |/      |" << endl; 
     std::cout << " |      (_)" << endl;
-    std::cout << " |      \\|/" << endl;
+    std::cout << " |      \\|" << endl;
     std::cout << " |       |" << endl;
     std::cout << " |      " << endl;
     std::cout << " |\n";
     std::cout << "_|___\n";
     }
     else if(left ==2)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|/" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==1)
     {
 
     std::cout << " _______ "<< endl;
@@ -236,12 +236,12 @@ void guesses_left (int left)
     std::cout << "_|___\n";
     }
 
-    else if(left ==1)
+    else if(left ==0)
     {
     std::cout << " _______ "<< endl;
     std::cout << " |/      |" << endl; 
     std::cout << " |      (_)" << endl;
-    std::cout << " |     \\|/" << endl;
+    std::cout << " |      \\|/" << endl;
     std::cout << " |       |" << endl;
     std::cout << " |      / \\" << endl;
     std::cout << " |\n";
@@ -275,10 +275,11 @@ int main()
         if (FunctionUsedconsonant(userConsonants, userconsonant)) // Check if the consonant has already been used
         {
             cout << "The conosonant '" << userconsonant << "' has already been used. Try another one." << endl;
+            
             continue;
         }    
         userConsonants.push_back(userconsonant);  // Store the consonant in userConsonants
-        --totalGuesses;
+        
         
         size_t pos = randomword.find(userconsonant);    // Find and store all positions of the consonant in the random word
         positions.clear(); // Clear previous positions
@@ -299,17 +300,28 @@ int main()
             cout << endl;
         }else{   // If consonant not found, reduce number of guesses and display message
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
-            
+            --totalGuesses;
            
         }
         cout << "Number of guesses left:" << totalGuesses << endl;
-        guesses_left(totalGuesses);
+        guesses_left(totalGuesses); //Prints out the hangman for each inccorrect guess
+        
+        cout << "All consonants entered: ";  // Display all guessed consonants
+        for (char consonant : userConsonants)
+        {
+            cout << consonant << " ";
+        }
+        cout << endl;
         
         if (allConsonantsGuessed(randomword, userConsonants))   // If all consonants are guessed, allow the user to guess the word
         {
             cout << "All consonants have been guessed! Now, you can guess the word." << endl;
             break;
         }
+        if (totalGuesses == 0) 
+        {
+            cout << "You've run out of guesses! The correct word was: " << randomword << endl;
+        }//sand test 
 }         
     
     if (totalGuesses > 0 )// Word guessing phase
@@ -320,6 +332,7 @@ int main()
             cout << "Please enter your guess for the word: ";
             cin >> guessedWord;
             --totalGuesses;
+            guesses_left(totalGuesses);
             
         if (guessedWord == randomword) {
             cout << "Congratulations! You guessed the word correctly!" << endl;
@@ -336,12 +349,8 @@ int main()
         }
     } 
     
-    cout << "All consonants entered: ";  // Display all guessed consonants
-    for (char consonant : userConsonants)
-    {
-        cout << consonant << " ";
-    }
-    cout << endl;
+    
+
     return 0;
 }
     

@@ -300,7 +300,7 @@ int main()
             cout << endl;
         }else{   // If consonant not found, reduce number of guesses and display message
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
-            --totalGuesses;
+
            
         }
         cout << "Number of guesses left:" << totalGuesses << endl;

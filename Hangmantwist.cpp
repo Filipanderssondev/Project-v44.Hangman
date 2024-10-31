@@ -41,18 +41,11 @@ class Player
 private:
     string name;
 public:
-    string GetName () const {
+    Player(const string& playerName) : name(playerName) {}
+    string getName () const {
         return name;
     }
 };
-
-Hangmantwist::Hangmantwist(/* args */)
-{
-}
-
-Hangmantwist::~Hangmantwist()
-{
-}
 
 bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
     //Checks the consonants with stored ones to find duplicates
@@ -280,7 +273,7 @@ int main()
     cin >> name2;
 
     Player player1(name1);
-    Player player2 (name2);
+    Player player2(name2);
     if (randomword.empty()) return 1;//If word is find print it
     
         cout << "Random 5-letter word: " << randomword << endl;
@@ -305,7 +298,7 @@ int main()
             continue;
         }    
         userConsonants.push_back(userconsonant);  // Store the consonant in userConsonants
-        --totalGuesses;
+        
         
         size_t pos = randomword.find(userconsonant);    // Find and store all positions of the consonant in the random word
         positions.clear(); // Clear previous positions
@@ -327,6 +320,7 @@ int main()
         }else{   // If consonant not found, reduce number of guesses and display message
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
             turn++;
+            --totalGuesses;
         }
         cout << "Number of guesses left:" << totalGuesses << endl;
         
@@ -341,7 +335,9 @@ int main()
     {
         string guessedWord;
         while (totalGuesses > 0) 
-        {
+        {   
+            Player& currentPlayer = (turn % 2 == 0) ? player1 : player2; //So they switch between players
+            cout << currentPlayer.getName() << "'s turn." << endl;
             cout << "Please enter your guess for the word: ";
             cin >> guessedWord;
             --totalGuesses;

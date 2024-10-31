@@ -36,19 +36,23 @@ void printMainMenu()
     return;
     //I got help from Geeks4Geeks to solve this 
 }
-class Player //class to create players for multiplayer purpose
+class Player
 {
 private:
     string name;
 public:
-    Player(const string& playerName) : name(playerName) {}
-
-    string getName () const {
+    string GetName () const {
         return name;
     }
 };
 
+Hangmantwist::Hangmantwist(/* args */)
+{
+}
 
+Hangmantwist::~Hangmantwist()
+{
+}
 
 bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
     //Checks the consonants with stored ones to find duplicates
@@ -124,6 +128,144 @@ bool allConsonantsGuessed(const string& word, const vector<char>& guessedConsona
     }
     return true; // Return true if all consonants are guessed
 }
+
+void guesses_left (int left)
+{
+    if(left ==12)
+    {
+        std::cout << "\n";
+
+    }
+
+    else if(left==11)
+    {
+    std::cout << "____\n";
+    }
+    else if(left ==10)
+    {
+    std::cout << " "<< endl;
+    std::cout << " |      " << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==9)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |      " << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==8)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |      |" << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==7)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==6)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==5)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==4)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==3)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==2)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|/" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==1)
+    {
+
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|/" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      / " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+
+    else if(left ==0)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|/" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      / \\" << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+} 
+
         
 int main()
 {   

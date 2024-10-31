@@ -4,23 +4,20 @@
 #include <cstdlib>
 #include <cctype>
 #include <ctime>
-
+#include <algorithm>
+#include <cstring>
 using namespace std;
 
-
-
-vector<string> FunctionEnterword();
-
-void display_status(vector<string> incorrect, string answer); 
 
 string getrandomword(const string& filename)
 {   
     ifstream file(filename);
     vector<string> words;
     string wordsfromfil;
-
+     // Check if the file opened successfully
     if (file.is_open())   
     {
+         // Reads words from the file and only stores 5-letter words
         while (file >> wordsfromfil)
         {
             if(wordsfromfil.length() == 5)
@@ -34,7 +31,7 @@ string getrandomword(const string& filename)
             cerr<< "Unable to open file: " << filename << endl;
             return "";
         }
-    
+       // Selects a random word from the list
     if (!words.empty()) {
         size_t randomIndex = static_cast<size_t>(rand()) % words.size();
         return words[randomIndex];
@@ -44,96 +41,63 @@ string getrandomword(const string& filename)
     }
 }   
 
-char Getuserconsonant()
+char Getuserconsonant()// Function toi get a consonant from player
 {  
     
-    char getconsonant;
-    while (true)
+    char getconsonant; 
+    while (true) 
     {
         cout << "Please enter a letter to search(enter '0' to stop)" << endl;
         cin >> getconsonant;
-        if (getconsonant == '0') return '0';
-        if (isalpha(getconsonant) && !isupper(getconsonant)) //Om det är en storbokstav måste player ange en ny
+        if (getconsonant == '0') return '0'; //if user enter 0, return 0 to indicate stopping
+        //Check if the input is a lowercase consonant(not a vowel)
+        if (isalpha(getconsonant) && !isupper(getconsonant) && getconsonant != 'a' && getconsonant != 'e' && getconsonant != 'i' && getconsonant != 'o' && getconsonant != 'u') //Om det är en storbokstav måste player ange en ny
         {
             return getconsonant;
-        }else if (isupper(getconsonant))
+        }else if (isupper(getconsonant)) //Check if the input is an uppercase letter, prompt for a lowercase consonant
         {
             cout << "Uppercase letters are not allowed. Please enter a lowercase letter." << endl;
         }else {
-            cout << "Invalid input. Please enter a lowercase consonant." << endl;
+            cout << "Invalid input. Please enter a lowercase consonant." << endl; // Prompt for a valid lowercase consonant if input is invalid
         }
     }
 }     
-
-
-vector<string> FunctionEnterword()
-{
-    vector<string> guessedWords;
-    string getWord; 
-
-    cout<<"Please enter a word with 5 letters in lowecase: \n"; 
-    getline(cin, getWord); 
-    
-    guessedWords.push_back(getWord); 
-
-    return guessedWords; 
-}
-
-void display_status(vector<string> incorrect, string answer)
-{
-  cout<<"Incorrect Guesses: \n";
-
-  for(int i = 0; i<incorrect.size(); i++)
-  {
-    cout<<incorrect[i]<<" ";
-  }
-
-  cout<<"\nCorrect word:\n";
-
-  for(int i = 0; i<answer.length(); i++)
-  {
-    cout<<answer[i]<<" ";
-  }
-}
-
-
         
 int main()
 {   
-    srand(static_cast<unsigned int>(time(nullptr)));
-    string filename = "words.txt";
-    string randomword = getrandomword(filename);
+    //printMainMenu();
+    srand(static_cast<unsigned int>(time(nullptr))); // Seed for random number generation
+    string filename = "words.txt"; //Word file
+    string randomword = getrandomword(filename); //Get a random 5-letter word
     
-    if (!randomword.empty()) 
-    {
+    if (randomword.empty()) return 1;//If word is find print it
+    
         cout << "Random 5-letter word: " << randomword << endl;
-    } else {
-        return 1;
-    }
-
-    vector<size_t> positions;
-    vector<char> userConsonants; 
-    while (true)
+        
+    vector<size_t> positions; // Vector to store positions of the consonant in the word
+    vector<char> userConsonants; // Vector to store all user-entered consonants
+    int totalGuesses = 12; // Maximum number of guesses allowed
+    
+    while (totalGuesses > 0)    // Loop until user decides to stop or runs out of guesses
     {
-        char userconsonant = Getuserconsonant();
+        char userconsonant = Getuserconsonant(); // Get a consonant from the user
         if (userconsonant == '0') 
         {
-            break; 
+            break; // Exit loop if user enters '0'
         }
         userConsonants.push_back(userconsonant);
         size_t pos = randomword.find(userconsonant);
         positions.clear();
-
         while (pos != string::npos)
         {
             positions.push_back(pos); //kolla var liger bokstaven och spara den
             pos = randomword.find(userconsonant, pos + 1);
         }
             
-        if  (!positions.empty())
+        if  (!positions.empty())     // If the consonant is found, display positions
         {        
             
-            cout << "The consonant " << userconsonant << "is in the word at positions: ";   
+            cout << "The consonant " << userconsonant << " is in the word at positions: ";   
             for (size_t position : positions)
             {
                 cout << position + 1 << " ";
@@ -150,27 +114,8 @@ int main()
             cout << consonant << " ";
         }
             cout << endl;
-    
-    int wrongGuess=0;
-    string guess; 
-    
-    while(wrongGuess<12)
-    {
-
-        //Level 2 asks user to guess a word
-        vector<string> userGueesedWords = FunctionEnterword();
-        display_status(userGueesedWords, guess); 
-
-        cout<<"You already guessed these words: \n"; 
-        for (string word : userGueesedWords)
-        {
-            cout << word << " ";
-        }    
-
-    }
         
 }
-
 
 
 

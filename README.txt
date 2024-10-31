@@ -51,5 +51,7 @@ So, choose your guesses carefully, watch your opponent’s moves, and aim to be 
 
 Good luck, and may the best guesser win!
 
+PRESS ENTER TO CONTINUE
+
 
 

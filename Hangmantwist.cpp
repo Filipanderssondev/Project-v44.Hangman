@@ -96,7 +96,7 @@ char Getuserconsonant()// Function toi get a consonant from player
     {
         cout << "Please enter a letter to search(enter '0' to stop)" << endl;
         cin >> getconsonant;
-        if (getconsonant == '0') return '0'; //if user enter 0, return 0 to indicate stopping
+        if (getconsonant == '0') return 0; //if user enter 0, return 0 to indicate stopping
         //Check if the input is a lowercase consonant(not a vowel)
         if (isalpha(getconsonant) && !isupper(getconsonant) && getconsonant != 'a' && getconsonant != 'e' && getconsonant != 'i' && getconsonant != 'o' && getconsonant != 'u') //Om det är en storbokstav måste player ange en ny
         {
@@ -326,12 +326,13 @@ int main()
         
         if (allConsonantsGuessed(randomword, userConsonants))   // If all consonants are guessed, allow the user to guess the word
         {
-            cout << "All consonants have been guessed! Now, you can guess the word." << endl;
+            cout << "Level 1 is complete; all consonants have been correctly guessed." << endl;// clarifing the change from level 1 to level 2
+            cout << "Now starting Level 2. You need to guess the correct word." << endl;
             break;
         }
 }         
     
-    if (totalGuesses > 0 )// Word guessing phase
+    if (totalGuesses > 0)// Word guessing phase
     {
         string guessedWord;
         while (totalGuesses > 0) 
@@ -344,7 +345,7 @@ int main()
             turn++;
             
         if (guessedWord == randomword) {
-            cout << "Congratulations! You guessed the word correctly!" << endl;
+            cout << "Congratulations! " << currentPlayer.getName() << " guessed the word correctly!" << endl;
             break;
         }else 
         {

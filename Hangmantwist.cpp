@@ -150,7 +150,7 @@ int main()
     
     while (totalGuesses > 0)    // Loop until user decides to stop or runs out of guesses
     {
-        Player& currentPlayer = (turn % 2 == 0) ? player1 : player2;
+        Player& currentPlayer = (turn % 2 == 0) ? player1 : player2; //So they switch between players
         cout << currentPlayer.getName() << "'s turn." << endl;
         char userconsonant = Getuserconsonant(); // Get a consonant from the user
         if (userconsonant == '0') 
@@ -203,6 +203,7 @@ int main()
             cout << "Please enter your guess for the word: ";
             cin >> guessedWord;
             --totalGuesses;
+            turn++;
             
         if (guessedWord == randomword) {
             cout << "Congratulations! You guessed the word correctly!" << endl;

@@ -263,10 +263,10 @@ void guesses_left (int left)
 int main()
 {   
     printMainMenu();
-    srand(static_cast<unsigned int>(time(nullptr))); // Seed for random number generation
-    string filename = "words.txt"; //Word file
-    string randomword = getrandomword(filename); //Get a random 5-letter word
-    string name1, name2;                // Adding players name to make it more personalized
+    srand(static_cast<unsigned int>(time(nullptr)));// Seed for random number generation
+    string filename = "words.txt";                 //Word file
+    string randomword = getrandomword(filename);  //Get a random 5-letter word
+    string name1, name2;                         // Adding players name to make it more personalized
     cout << "Enter name for player 1: ";
     cin >> name1;
     cout << "Enter name for player 2: ";
@@ -278,16 +278,16 @@ int main()
     
         cout << "Random 5-letter word: " << randomword << endl;
         
-    vector<size_t> positions; // Vector to store positions of the consonant in the word
-    vector<char> userConsonants; // Vector to store all user-entered consonants
-    int turn = 0; //Created turns so it can switch between the players
-    int totalGuesses = 12; // Maximum number of guesses allowed
+    vector<size_t> positions;       // Vector to store positions of the consonant in the word
+    vector<char> userConsonants;    // Vector to store all user-entered consonants
+    int turn = 0;                   //Created turns so it can switch between the players
+    int totalGuesses = 12;          // Maximum number of guesses allowed
     
-    while (totalGuesses > 0)    // Loop until user decides to stop or runs out of guesses
+    while (totalGuesses > 0)        // Loop until user decides to stop or runs out of guesses
     {
         Player& currentPlayer = (turn % 2 == 0) ? player1 : player2; //So they switch between players
         cout << currentPlayer.getName() << "'s turn." << endl;
-        char userconsonant = Getuserconsonant(); // Get a consonant from the user
+        char userconsonant = Getuserconsonant();                    // Get a consonant from the user
         if (userconsonant == '0') 
         {
             break; // Exit loop if user enters '0'

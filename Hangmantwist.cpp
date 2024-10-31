@@ -323,12 +323,23 @@ int main()
             --totalGuesses;
         }
         cout << "Number of guesses left:" << totalGuesses << endl;
-        
+        guesses_left(totalGuesses);
+
+        cout <<"All consonants entered; ";
+        for(char consonant : userConsonants)
+        {
+            cout << consonant << " ";
+        } 
+        cout << endl;
         if (allConsonantsGuessed(randomword, userConsonants))   // If all consonants are guessed, allow the user to guess the word
         {
             cout << "Level 1 is complete; all consonants have been correctly guessed." << endl;// clarifing the change from level 1 to level 2
             cout << "Now starting Level 2. You need to guess the correct word." << endl;
             break;
+        }
+        if (totalGuesses == 0)
+        {
+            cout << "You've run out of guesses! The correct word was: " << randomword << endl;
         }
 }         
     
@@ -345,7 +356,7 @@ int main()
             turn++;
             
         if (guessedWord == randomword) {
-            cout << "Congratulations! " << currentPlayer.getName() << " guessed the word correctly!" << endl;
+            cout << "Congratulations! " << currentPlayer.getName() << " guessed the word correctly!" << endl; //Gives the player who guess the word the win
             break;
         }else 
         {

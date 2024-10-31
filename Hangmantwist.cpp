@@ -327,8 +327,10 @@ int main()
     if (totalGuesses > 0 )// Word guessing phase
     {
         string guessedWord;
+       
         while (totalGuesses > 0) 
         {
+            
             cout << "Please enter your guess for the word: ";
             cin >> guessedWord;
             --totalGuesses;
@@ -349,7 +351,7 @@ int main()
         }
     } 
     
-    
+     
 
     return 0;
 }

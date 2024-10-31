@@ -8,8 +8,45 @@
 #include <cstring>
 using namespace std;
 
+void printMainMenu()
+{   
+    //Opens the file in reading mode
+    ifstream f("README.txt");
 
-string getrandomword(const string& filename)
+    //Checks if the file is opened correctly
+    if (!f.is_open())
+    {
+        cerr << "Error message!: Couldnt open the file!";
+        return;
+    }
+
+    //String variable to to store the read data
+    string s;
+
+    // Read each line of the file and print it to the
+    // Standard output stream till the whole file is 
+    // Completely read
+    while (getline(f, s))
+    {
+        cout << s << endl;
+    }
+
+    //Close the file
+    f.close();
+    return;
+    //I got help from Geeks4Geeks to solve this 
+}
+
+bool FunctionUsedconsonant(const vector<char>& consonants, char userconsonant) {
+    //Checks the consonants with stored ones to find duplicates
+    for (char c : consonants) {
+        if (c == userconsonant) {
+            return true;
+        }
+    }
+    return false;
+}
+string getrandomword(const string& filename) // Function to get a random 5-letter word from a file
 {   
     ifstream file(filename);
     vector<string> words;
@@ -62,10 +99,160 @@ char Getuserconsonant()// Function toi get a consonant from player
         }
     }
 }     
+// Function to check if all consonants in the word have been guessed
+bool allConsonantsGuessed(const string& word, const vector<char>& guessedConsonants) {
+    for (char c : word) 
+    {
+        // Check if character is a consonant and is not in guessed consonants
+        if (isalpha(c) && !strchr("aeiou", c) && find(guessedConsonants.begin(), guessedConsonants.end(), c) == guessedConsonants.end()) 
+        {
+            return false; // Return false if any consonant is not guessed
+        }
+    }
+    return true; // Return true if all consonants are guessed
+}
+
+void guesses_left (int left)
+{
+    if(left ==13)
+    {
+        std::cout << "\n";
+
+    }
+
+    else if(left==12)
+    {
+    std::cout << "____\n";
+    }
+    else if(left ==11)
+    {
+    std::cout << " "<< endl;
+    std::cout << " |      " << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==10)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |      " << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==9)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |      |" << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==8)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==7)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==6)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |       " << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==5)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==4)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==3)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|/" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+    else if(left ==2)
+    {
+
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |      \\|/" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      / " << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+
+    else if(left ==1)
+    {
+    std::cout << " _______ "<< endl;
+    std::cout << " |/      |" << endl; 
+    std::cout << " |      (_)" << endl;
+    std::cout << " |     \\|/" << endl;
+    std::cout << " |       |" << endl;
+    std::cout << " |      / \\" << endl;
+    std::cout << " |\n";
+    std::cout << "_|___\n";
+    }
+} 
+
         
 int main()
 {   
-    //printMainMenu();
+    printMainMenu();
     srand(static_cast<unsigned int>(time(nullptr))); // Seed for random number generation
     string filename = "words.txt"; //Word file
     string randomword = getrandomword(filename); //Get a random 5-letter word
@@ -85,9 +272,16 @@ int main()
         {
             break; // Exit loop if user enters '0'
         }
-        userConsonants.push_back(userconsonant);
-        size_t pos = randomword.find(userconsonant);
-        positions.clear();
+        if (FunctionUsedconsonant(userConsonants, userconsonant)) // Check if the consonant has already been used
+        {
+            cout << "The conosonant '" << userconsonant << "' has already been used. Try another one." << endl;
+            continue;
+        }    
+        userConsonants.push_back(userconsonant);  // Store the consonant in userConsonants
+        --totalGuesses;
+        
+        size_t pos = randomword.find(userconsonant);    // Find and store all positions of the consonant in the random word
+        positions.clear(); // Clear previous positions
         while (pos != string::npos)
         {
             positions.push_back(pos); //kolla var liger bokstaven och spara den
@@ -109,15 +303,52 @@ int main()
            
         }
         cout << "Number of guesses left:" << totalGuesses << endl;
+        guesses_left(totalGuesses);
         
-        cout << "All letters entered: ";
-        for (char consonant : userConsonants) //skriver ut alla bokstaver som har sparat i vector-consonant
+        if (allConsonantsGuessed(randomword, userConsonants))   // If all consonants are guessed, allow the user to guess the word
         {
-            cout << consonant << " ";
+            cout << "All consonants have been guessed! Now, you can guess the word." << endl;
+            break;
         }
-            cout << endl;
+}         
+    
+    if (totalGuesses > 0 )// Word guessing phase
+    {
+        string guessedWord;
+        while (totalGuesses > 0) 
+        {
+            cout << "Please enter your guess for the word: ";
+            cin >> guessedWord;
+            --totalGuesses;
+            
+        if (guessedWord == randomword) {
+            cout << "Congratulations! You guessed the word correctly!" << endl;
+            break;
+        }else 
+        {
+            cout << "Sorry, that's not correct. Please try agian " << endl;
+            cout << "Guesses left: " << totalGuesses << endl;
+        }
+        }
+        if (totalGuesses == 0) 
+        {
+            cout << "You've run out of guesses! The correct word was: " << randomword << endl;
+        }
     } 
+    
+    cout << "All consonants entered: ";  // Display all guessed consonants
+    for (char consonant : userConsonants)
+    {
+        cout << consonant << " ";
+    }
+    cout << endl;
+    return 0;
 }
+    
+
+        
+    
+
 
 
 

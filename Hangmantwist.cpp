@@ -119,6 +119,7 @@ int main()
         }
         else{
             cout << "The consonant " << userconsonant << " is not in the word." << endl;
+            
         }
     }    
         

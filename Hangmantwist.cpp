@@ -103,10 +103,12 @@ int main()
                 cout << position + 1 << " ";
             }
             cout << endl;
-        }else{
-            cout << "The consonant " << userconsonant << "is not in the word." << endl;
-            }
-    }    
+        }else{   // If consonant not found, reduce number of guesses and display message
+            cout << "The consonant " << userconsonant << " is not in the word." << endl;
+            
+           
+        }
+        cout << "Number of guesses left:" << totalGuesses << endl;
         
         cout << "All letters entered: ";
         for (char consonant : userConsonants) //skriver ut alla bokstaver som har sparat i vector-consonant
@@ -114,7 +116,7 @@ int main()
             cout << consonant << " ";
         }
             cout << endl;
-        
+    } 
 }
 
 

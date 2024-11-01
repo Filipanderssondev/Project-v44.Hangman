@@ -96,9 +96,11 @@ char Getuserconsonant()// Function toi get a consonant from player
     {
         cout << "Please enter a letter to search(enter '0' to stop)" << endl;
         cin >> getconsonant;
-        if (getconsonant == '0') {
-            return '\0'; //if user enter 0, return 0 to indicate stopping
-        } 
+        if (getconsonant == '0') 
+        {
+            return '0'; // Exit loop if user enters '0'
+        }
+        
         //Check if the input is a lowercase consonant(not a vowel)
         if (isalpha(getconsonant) && !isupper(getconsonant) && getconsonant != 'a' && getconsonant != 'e' && getconsonant != 'i' && getconsonant != 'o' && getconsonant != 'u') //Om det är en storbokstav måste player ange en ny
         {
@@ -264,6 +266,8 @@ void guesses_left (int left)
         
 int main()
 {   
+    char playAgain = 'y';
+    while (playAgain == 'y' || playAgain == 'Y') {
     srand(static_cast<unsigned int>(time(nullptr)));// Seed for random number generation
     //int continueGame = 1;  //To play multiple rounds
     //do { //do-while loop for continue the game 
@@ -294,7 +298,7 @@ int main()
         char userconsonant = Getuserconsonant();                    // Get a consonant from the user
         if (userconsonant == '0') 
         {
-            break; // Exit loop if user enters '0'
+            return '0'; // Exit loop if user enters '0'
         }
         if (FunctionUsedconsonant(userConsonants, userconsonant)) // Check if the consonant has already been used
         {
@@ -346,29 +350,33 @@ int main()
             cout << "You've run out of guesses! The correct word was: " << randomword << endl;
         }
 }         
-    
+  
     if (totalGuesses > 0)// Word guessing phase
     {
-        string guessedWord;
+          string guessedWord;
         while (totalGuesses > 0) 
         {   
+            
             Player& currentPlayer = (turn % 2 == 0) ? player1 : player2; //So they switch between players
             cout << currentPlayer.getName() << "'s turn." << endl;
             cout << "Please enter your guess for the word: ";
             cin >> guessedWord;
+            if (guessedWord == "0") {
+            return 0; //if user enter 0, return 0 to indicate stopping
+            } 
             --totalGuesses;
             turn++;
             
-        if (guessedWord == randomword) {
+            if (guessedWord == randomword) {
             cout << "Congratulations! " << currentPlayer.getName() << " guessed the word correctly!" << endl; //Gives the player who guess the word the win
             //cout << "Would you like to play again? Press 1 if not press 0" << endl;
             //cin >> continueGame;
             break;
-        }else 
-        {
+            }else 
+            {
             cout << "Sorry, that's not correct. Please try again " << endl;
             cout << "Guesses left: " << totalGuesses << endl;
-        }
+            }
         }
         if (totalGuesses == 0) 
         {
@@ -377,6 +385,11 @@ int main()
             //cin >> continueGame;
         }
         } 
+        cout << "Do you want to play again? (y/n): ";
+        cin >> playAgain;
+    }
+    cout << "Thank you for playing! Goodbye!" << endl;
+    return 0;
     //} while (continueGame == 1);
     
     /*cout << "All consonants entered: ";  // Display all guessed consonants

@@ -96,7 +96,9 @@ char Getuserconsonant()// Function toi get a consonant from player
     {
         cout << "Please enter a letter to search(enter '0' to stop)" << endl;
         cin >> getconsonant;
-        if (getconsonant == '0') return 0; //if user enter 0, return 0 to indicate stopping
+        if (getconsonant == '0') {
+            return '\0'; //if user enter 0, return 0 to indicate stopping
+        } 
         //Check if the input is a lowercase consonant(not a vowel)
         if (isalpha(getconsonant) && !isupper(getconsonant) && getconsonant != 'a' && getconsonant != 'e' && getconsonant != 'i' && getconsonant != 'o' && getconsonant != 'u') //Om det är en storbokstav måste player ange en ny
         {
@@ -262,10 +264,10 @@ void guesses_left (int left)
         
 int main()
 {   
-    printMainMenu();
-    int continueGame = 1;  //To play multiple rounds
     srand(static_cast<unsigned int>(time(nullptr)));// Seed for random number generation
-    //while (continueGame = 1)   { Tried but didnt get a new word from the file
+    //int continueGame = 1;  //To play multiple rounds
+    //do { //do-while loop for continue the game 
+    printMainMenu();
     string filename = "words.txt";                 //Word file
     string randomword = getrandomword(filename);  //Get a random 5-letter word
     string name1, name2;                         // Adding players name to make it more personalized
@@ -375,7 +377,7 @@ int main()
             //cin >> continueGame;
         }
         } 
-    //}
+    //} while (continueGame == 1);
     
     /*cout << "All consonants entered: ";  // Display all guessed consonants
     for (char consonant : userConsonants)

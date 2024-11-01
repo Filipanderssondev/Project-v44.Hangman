@@ -263,7 +263,9 @@ void guesses_left (int left)
 int main()
 {   
     printMainMenu();
+    int continueGame = 1;  //To play multiple rounds
     srand(static_cast<unsigned int>(time(nullptr)));// Seed for random number generation
+    //while (continueGame = 1)   { Tried but didnt get a new word from the file
     string filename = "words.txt";                 //Word file
     string randomword = getrandomword(filename);  //Get a random 5-letter word
     string name1, name2;                         // Adding players name to make it more personalized
@@ -357,24 +359,29 @@ int main()
             
         if (guessedWord == randomword) {
             cout << "Congratulations! " << currentPlayer.getName() << " guessed the word correctly!" << endl; //Gives the player who guess the word the win
+            //cout << "Would you like to play again? Press 1 if not press 0" << endl;
+            //cin >> continueGame;
             break;
         }else 
         {
-            cout << "Sorry, that's not correct. Please try agian " << endl;
+            cout << "Sorry, that's not correct. Please try again " << endl;
             cout << "Guesses left: " << totalGuesses << endl;
         }
         }
         if (totalGuesses == 0) 
         {
             cout << "You've run out of guesses! The correct word was: " << randomword << endl;
+            //cout << "Would you like to play again? Press 1 if not press 0" << endl;
+            //cin >> continueGame;
         }
-    } 
+        } 
+    //}
     
-    cout << "All consonants entered: ";  // Display all guessed consonants
+    /*cout << "All consonants entered: ";  // Display all guessed consonants
     for (char consonant : userConsonants)
     {
         cout << consonant << " ";
     }
     cout << endl;
-    return 0;
+    return 0; */
 }
